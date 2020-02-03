@@ -1,6 +1,6 @@
 // intlist.cpp
 // Implements class IntList
-// YOUR NAME(S), AND DATE
+// Anshuman Dash 2/3/2020
 
 #include "intlist.h"
 
@@ -9,29 +9,57 @@ using std::cout;
 
 // return sum of values in list
 int IntList::sum() const {
-    return 0; // REPLACE THIS NON-SOLUTION
+	int total = 0;
+	for(Node* p = first; p; p=p->next){
+		total+= p->info;
+	}
+	return total;
 }
 
 // returns true if value is in the list; false if not
 bool IntList::contains(int value) const {
-    return false; // REPLACE THIS NON-SOLUTION
+    	for(Node* p = first; p; p = p->next){
+		if(p->info == value){
+			return true;
+		}
+	}
+	return false;
 }
 
 // returns maximum value in list, or 0 if empty list
 int IntList::max() const {
-    return 0; // REPLACE THIS NON-SOLUTION
-    
+   	if(first == 0)
+		return 0;
+	int ret = first->info;
+	for(Node* p = first; p; p= p->next){
+		if(p->info>ret){
+			ret = p->info;
+		}
+	}
+	return ret;
 }
 
 // returns average (arithmetic mean) of all values, or
 // 0 if list is empty
 double IntList::average() const {
-    return 0.0; // REPLACE THIS NON-SOLUTION
+   	if(first == 0){
+		return 0;
+	}
+	int count = 0;
+	int sum = 0;
+	for(Node* p = first;p;p=p->next){
+		count++;
+		sum+=p->info;
+	}
+	return((sum+0.0)/count);
 }
 
 // inserts value as new node at beginning of list
 void IntList::insertFirst(int value) {
-    // IMPLEMENT
+    Node* n = new Node;
+    n->info = value;
+    n->next = first;
+    first = n;
 }
 
 // DO NOT CHANGE ANYTHING BELOW (READ IT THOUGH)
